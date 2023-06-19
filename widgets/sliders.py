@@ -5,9 +5,8 @@ Created on Mon Jun  5 18:03:15 2023
 @author: piwko
 """
 
-import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QSlider, QHBoxLayout, QLabel, QGridLayout, QWidget
-from PyQt5.QtCore import Qt, QCoreApplication, pyqtSignal
+from PyQt5.QtWidgets import QSlider, QLabel, QGridLayout, QWidget
+from PyQt5.QtCore import Qt, pyqtSignal
 
 
 class SliderWidget(QWidget):
@@ -41,13 +40,16 @@ class SliderWidget(QWidget):
 
         self.__slider1_label_color = QLabel(self)
         self.__slider1_label_color.setText("Rouge")
-        self.__slider1_label_color.setStyleSheet('color: red; background-color: None')
+        self.__slider1_label_color.setStyleSheet(
+            'color: red; background-color: None')
         self.__slider2_label_color = QLabel(self)
         self.__slider2_label_color.setText("Vert")
-        self.__slider2_label_color.setStyleSheet('color: green; background-color: None')
+        self.__slider2_label_color.setStyleSheet(
+            'color: green; background-color: None')
         self.__slider3_label_color = QLabel(self)
         self.__slider3_label_color.setText("Bleu")
-        self.__slider3_label_color.setStyleSheet('color: blue; background-color: None')
+        self.__slider3_label_color.setStyleSheet(
+            'color: blue; background-color: None')
 
         self.__slider_layout.addWidget(self.__slider1_label_color, 0, 1)
         self.__slider_layout.addWidget(self.__slider2_label_color, 1, 1)
@@ -76,8 +78,9 @@ class SliderWidget(QWidget):
         else:
             self.__slider1_label_color.setText(str(value))
 
-        self.SLIDERS_SIGNAL.emit(self.__slider1.value(), self.__slider2.value(), self.__slider3.value())
-        
+        self.SLIDERS_SIGNAL.emit(self.__slider1.value(
+        ), self.__slider2.value(), self.__slider3.value())
+
     def __update_label_green_value(self, value: int) -> None:
         """update label green string
 
@@ -89,8 +92,9 @@ class SliderWidget(QWidget):
         else:
             self.__slider2_label_color.setText(str(value))
 
-        self.SLIDERS_SIGNAL.emit(self.__slider1.value(), self.__slider2.value(), self.__slider3.value())
-        
+        self.SLIDERS_SIGNAL.emit(self.__slider1.value(
+        ), self.__slider2.value(), self.__slider3.value())
+
     def __update_label_blue_value(self, value: int) -> None:
         """update label blue string
 
@@ -102,9 +106,5 @@ class SliderWidget(QWidget):
         else:
             self.__slider3_label_color.setText(str(value))
 
-        self.SLIDERS_SIGNAL.emit(self.__slider1.value(), self.__slider2.value(), self.__slider3.value())
-        
-
-    # TODO: A supprimer
-    # def slider_position(self, v):
-    #     print("Slider est à :", v)
+        self.SLIDERS_SIGNAL.emit(self.__slider1.value(
+        ), self.__slider2.value(), self.__slider3.value())
