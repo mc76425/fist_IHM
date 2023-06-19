@@ -41,12 +41,21 @@ class SliderWidget(QWidget):
 
         self.__slider1_label_color = QLabel(self)
         self.__slider1_label_color.setText("Rouge")
+        self.__slider1_label_color.setStyleSheet('color: red; background-color: None')
         self.__slider2_label_color = QLabel(self)
+        self.__slider2_label_color.setText("Vert")
+        self.__slider2_label_color.setStyleSheet('color: green; background-color: None')
         self.__slider3_label_color = QLabel(self)
+        self.__slider3_label_color.setText("Bleu")
+        self.__slider3_label_color.setStyleSheet('color: blue; background-color: None')
 
         self.__slider_layout.addWidget(self.__slider1_label_color, 0, 1)
+        self.__slider_layout.addWidget(self.__slider2_label_color, 1, 1)
+        self.__slider_layout.addWidget(self.__slider3_label_color, 2, 1)
 
         self.__slider1.valueChanged.connect(self.__update_label_red_value)
+        self.__slider2.valueChanged.connect(self.__update_label_green_value)
+        self.__slider3.valueChanged.connect(self.__update_label_blue_value)
 
     def get_positions(self):
         """_summary_
@@ -67,8 +76,34 @@ class SliderWidget(QWidget):
         else:
             self.__slider1_label_color.setText(str(value))
 
-        self.SLIDERS_SIGNAL.emit(self.__slider1.value(
-        ), self.__slider2.value(), self.__slider3.value())
+        self.SLIDERS_SIGNAL.emit(self.__slider1.value(), self.__slider2.value(), self.__slider3.value())
+        
+    def __update_label_green_value(self, value: int) -> None:
+        """update label green string
+
+        Args:
+            value (int): slider one position
+        """
+        if value == 0:
+            self.__slider2_label_color.setText("Vert")
+        else:
+            self.__slider2_label_color.setText(str(value))
+
+        self.SLIDERS_SIGNAL.emit(self.__slider1.value(), self.__slider2.value(), self.__slider3.value())
+        
+    def __update_label_blue_value(self, value: int) -> None:
+        """update label blue string
+
+        Args:
+            value (int): slider one position
+        """
+        if value == 0:
+            self.__slider3_label_color.setText("Bleu")
+        else:
+            self.__slider3_label_color.setText(str(value))
+
+        self.SLIDERS_SIGNAL.emit(self.__slider1.value(), self.__slider2.value(), self.__slider3.value())
+        
 
     # TODO: A supprimer
     # def slider_position(self, v):
